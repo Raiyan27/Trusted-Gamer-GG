@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <nav className="bg-gray-800 text-white px-6 py-4 flex justify-between items-center">
       <div className="text-2xl font-bold">
-        <Link to="/">Chill Gamer</Link>
+        <Link to="/">Trusted Gamer GG</Link>
       </div>
       <ul className="flex space-x-4">
         <li>
@@ -19,6 +19,8 @@ const Navbar = () => {
             All Reviews
           </Link>
         </li>
+      </ul>
+      <ul className="flex space-x-4">
         {isLoggedIn ? (
           <>
             <li>
