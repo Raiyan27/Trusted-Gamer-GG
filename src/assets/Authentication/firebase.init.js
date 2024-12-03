@@ -2,7 +2,9 @@
 import { initializeApp } from "firebase/app";
 import {
   getAuth,
+  createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
   signInWithPopup,
   GoogleAuthProvider,
 } from "firebase/auth";
@@ -25,7 +27,9 @@ const auth = getAuth(app);
 
 export {
   auth,
+  createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
   signInWithPopup,
   GoogleAuthProvider,
 };

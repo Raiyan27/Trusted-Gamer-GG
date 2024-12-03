@@ -9,6 +9,8 @@ import Root from "./assets/pages/Root";
 import ErrorPage from "./assets/pages/ErrorPage";
 import HomePage from "./assets/pages/HomePage";
 import Login from "./assets/pages/Login";
+import Register from "./assets/pages/Register";
+import { AuthProvider } from "./assets/Authentication/AuthContext";
 
 const router = createBrowserRouter([
   {
@@ -24,12 +26,25 @@ const router = createBrowserRouter([
         path: "Login",
         element: <Login />,
       },
+      {
+        path: "register",
+        element: <Register />,
+      },
     ],
   },
 ]);
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
-    <ToastContainer />
+    <AuthProvider>
+      <RouterProvider router={router} />
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnHover
+        draggable
+      />
+    </AuthProvider>
   </StrictMode>
 );
