@@ -1,5 +1,3 @@
-import React from "react";
-import Slider from "react-slick";
 import GameCard from "../components/GameCard";
 
 const HomePage = () => {

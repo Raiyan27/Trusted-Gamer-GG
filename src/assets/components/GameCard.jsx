@@ -14,7 +14,7 @@ const GameCard = ({ game }) => {
         <p className="text-gray-500">Released: {game.year}</p>
         <Link
           to={`/review/${game.id}`}
-          className="text-blue-500 mt-2 inline-block"
+          className="text-indigo-600 mt-2 inline-block"
         >
           Explore Details
         </Link>
