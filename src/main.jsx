@@ -4,14 +4,16 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { AuthProvider } from "./assets/Authentication/AuthContext";
 
 import Root from "./assets/pages/Root";
 import ErrorPage from "./assets/pages/ErrorPage";
 import HomePage from "./assets/pages/HomePage";
 import Login from "./assets/pages/Login";
 import Register from "./assets/pages/Register";
-import { AuthProvider } from "./assets/Authentication/AuthContext";
-
+import PrivateRoute from "./assets/components/PrivateRoute";
+import AddReview from "./assets/components/AddReview";
+import AllReviews from "./assets/components/AllReviews";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -29,6 +31,26 @@ const router = createBrowserRouter([
       {
         path: "register",
         element: <Register />,
+      },
+      {
+        path: "addReview",
+        element: (
+          <PrivateRoute>
+            <AddReview />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "myReviews",
+        element: <PrivateRoute></PrivateRoute>,
+      },
+      {
+        path: "reviews",
+        element: (
+          <PrivateRoute>
+            <AllReviews />
+          </PrivateRoute>
+        ),
       },
     ],
   },

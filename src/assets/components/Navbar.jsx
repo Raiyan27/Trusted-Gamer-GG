@@ -10,7 +10,6 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      // Firebase will automatically update `currentUser` in context
     } catch (error) {
       console.error("Logout failed:", error);
     }
@@ -32,25 +31,8 @@ const Navbar = () => {
             All Reviews
           </Link>
         </li>
-        <li>
-          <Link to="/addReview" className="hover:text-gray-400">
-            Add Review
-          </Link>
-        </li>
-        <li>
-          <Link to="/myReviews" className="hover:text-gray-400">
-            My Reviews
-          </Link>
-        </li>
-        <li>
-          <Link to="/myWatchlist" className="hover:text-gray-400">
-            Watchlist
-          </Link>
-        </li>
-      </ul>
-      <ul className="flex space-x-4">
-        {currentUser ? (
-          <>
+        {currentUser && (
+          <ul className="flex space-x-4">
             <li>
               <Link to="/addReview" className="hover:text-gray-400">
                 Add Review
@@ -63,9 +45,15 @@ const Navbar = () => {
             </li>
             <li>
               <Link to="/myWatchlist" className="hover:text-gray-400">
-                Watchlist
+                Game Watchlist
               </Link>
             </li>
+          </ul>
+        )}
+      </ul>
+      <ul className="flex space-x-4">
+        {currentUser ? (
+          <>
             <li className="flex items-center space-x-2">
               {currentUser.photoURL ? (
                 <img

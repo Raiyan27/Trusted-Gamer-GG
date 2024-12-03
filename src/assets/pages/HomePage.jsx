@@ -1,50 +1,14 @@
+import { useEffect, useState } from "react";
 import GameCard from "../components/GameCard";
 
 const HomePage = () => {
-  const highestRatedGames = [
-    {
-      id: 1,
-      title: "Game 1",
-      rating: 5,
-      image: "https://via.placeholder.com/300",
-      year: 2023,
-    },
-    {
-      id: 2,
-      title: "Game 2",
-      rating: 4.8,
-      image: "https://via.placeholder.com/300",
-      year: 2023,
-    },
-    {
-      id: 3,
-      title: "Game 3",
-      rating: 4.7,
-      image: "https://via.placeholder.com/300",
-      year: 2023,
-    },
-    {
-      id: 4,
-      title: "Game 4",
-      rating: 4.6,
-      image: "https://via.placeholder.com/300",
-      year: 2023,
-    },
-    {
-      id: 5,
-      title: "Game 5",
-      rating: 4.5,
-      image: "https://via.placeholder.com/300",
-      year: 2023,
-    },
-    {
-      id: 6,
-      title: "Game 6",
-      rating: 4.4,
-      image: "https://via.placeholder.com/300",
-      year: 2023,
-    },
-  ];
+  const [highestRatedGames, setHighestRatedGames] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/highestRated")
+      .then((res) => res.json())
+      .then((data) => setHighestRatedGames(data));
+  }, []);
 
   return (
     <div>
