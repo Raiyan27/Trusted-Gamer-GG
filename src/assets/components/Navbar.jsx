@@ -1,7 +1,20 @@
 import { Link } from "react-router-dom";
+import { getAuth, signOut } from "firebase/auth";
+import { useContext } from "react";
+import { AuthContext } from "../Authentication/AuthContext";
 
 const Navbar = () => {
-  const isLoggedIn = false;
+  const { currentUser } = useContext(AuthContext);
+  const auth = getAuth();
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      // Firebase will automatically update `currentUser` in context
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
 
   return (
     <nav className="bg-gray-800 text-white px-6 py-4 flex justify-between items-center">
@@ -19,9 +32,24 @@ const Navbar = () => {
             All Reviews
           </Link>
         </li>
+        <li>
+          <Link to="/addReview" className="hover:text-gray-400">
+            Add Review
+          </Link>
+        </li>
+        <li>
+          <Link to="/myReviews" className="hover:text-gray-400">
+            My Reviews
+          </Link>
+        </li>
+        <li>
+          <Link to="/myWatchlist" className="hover:text-gray-400">
+            Watchlist
+          </Link>
+        </li>
       </ul>
       <ul className="flex space-x-4">
-        {isLoggedIn ? (
+        {currentUser ? (
           <>
             <li>
               <Link to="/addReview" className="hover:text-gray-400">
@@ -38,15 +66,22 @@ const Navbar = () => {
                 Watchlist
               </Link>
             </li>
-            <li className="flex items-center">
-              <img
-                src="https://via.placeholder.com/40"
-                alt="User Avatar"
-                className="w-8 h-8 rounded-full"
-              />
-              <span className="ml-2 cursor-pointer hover:text-gray-400">
+            <li className="flex items-center space-x-2">
+              {currentUser.photoURL ? (
+                <img
+                  src={currentUser.photoURL}
+                  alt="User Avatar"
+                  className="w-8 h-8 rounded-full"
+                />
+              ) : (
+                <span className="text-gray-400">Profile</span>
+              )}
+              <button
+                onClick={handleLogout}
+                className="ml-2 cursor-pointer hover:text-gray-400"
+              >
                 Logout
-              </span>
+              </button>
             </li>
           </>
         ) : (
