@@ -125,7 +125,7 @@ const ReviewDetails = () => {
                 Reviewed By
               </h3>
               <p className="text-gray-600">
-                {review.reviewerName} ({review.email})
+                {review.name} ({review.email})
               </p>
             </div>
 

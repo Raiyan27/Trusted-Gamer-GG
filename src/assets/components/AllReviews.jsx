@@ -6,6 +6,19 @@ const AllReviews = () => {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [sortOption, setSortOption] = useState("highestRated");
+  const [selectedGenre, setSelectedGenre] = useState("All");
+
+  const genres = [
+    "All",
+    "Action",
+    "RPG",
+    "Adventure",
+    "Shooter",
+    "Puzzle",
+    "Horror",
+    "Open World",
+    "Online Multiplayer",
+  ];
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -37,7 +50,13 @@ const AllReviews = () => {
     return reviews;
   };
 
+  const filterByGenre = (reviews, genre) => {
+    if (genre === "All") return reviews;
+    return reviews.filter((review) => review.genre === genre);
+  };
+
   const sortedReviews = sortReviews(reviews, sortOption);
+  const filteredReviews = filterByGenre(sortedReviews, selectedGenre);
 
   if (loading) {
     return (
@@ -51,26 +70,52 @@ const AllReviews = () => {
     <div className="container mx-auto p-4">
       <h2 className="text-3xl font-semibold text-center mb-8">All Reviews</h2>
 
-      <div className="mb-6">
-        <label htmlFor="sortOption" className="text-lg font-semibold">
-          Sort By:
-        </label>
-        <select
-          id="sortOption"
-          value={sortOption}
-          onChange={(e) => setSortOption(e.target.value)}
-          className="ml-4 p-2 border border-gray-300 rounded-md"
-        >
-          <option value="highestRated">Highest Rated</option>
-          <option value="year">Year (Newest to Oldest)</option>
-        </select>
+      <div className="mb-6 flex flex-wrap gap-4 justify-center">
+        <div>
+          <label htmlFor="sortOption" className="text-lg font-semibold">
+            Sort By:
+          </label>
+          <select
+            id="sortOption"
+            value={sortOption}
+            onChange={(e) => setSortOption(e.target.value)}
+            className="ml-4 p-2 border border-gray-300 rounded-md"
+          >
+            <option value="highestRated">Highest Rated</option>
+            <option value="year">Year (Newest to Oldest)</option>
+          </select>
+        </div>
+
+        <div>
+          <label htmlFor="genreFilter" className="text-lg font-semibold">
+            Filter By Genre:
+          </label>
+          <select
+            id="genreFilter"
+            value={selectedGenre}
+            onChange={(e) => setSelectedGenre(e.target.value)}
+            className="ml-4 p-2 border border-gray-300 rounded-md"
+          >
+            {genres.map((genre) => (
+              <option key={genre} value={genre}>
+                {genre}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {sortedReviews.map((review) => (
-          <GameCard key={review._id} game={review} />
-        ))}
-      </div>
+      {filteredReviews.length === 0 ? (
+        <div className="text-center text-xl font-semibold text-gray-500">
+          No matches found for the selected genre.
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredReviews.map((review) => (
+            <GameCard key={review._id} game={review} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
