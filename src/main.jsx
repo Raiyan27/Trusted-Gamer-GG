@@ -14,6 +14,9 @@ import Register from "./assets/pages/Register";
 import PrivateRoute from "./assets/components/PrivateRoute";
 import AddReview from "./assets/components/AddReview";
 import AllReviews from "./assets/components/AllReviews";
+import MyReviews from "./assets/components/MyReviews";
+import ReviewDetails from "./assets/components/ReviewDetails";
+import MyWatchlist from "./assets/components/MyWatchList";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -41,12 +44,28 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "myWatchlist",
+        element: (
+          <PrivateRoute>
+            <MyWatchlist />
+          </PrivateRoute>
+        ),
+      },
+      {
         path: "myReviews",
-        element: <PrivateRoute></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <MyReviews />
+          </PrivateRoute>
+        ),
       },
       {
         path: "reviews",
         element: <AllReviews />,
+      },
+      {
+        path: "review/:id",
+        element: <ReviewDetails />,
       },
     ],
   },

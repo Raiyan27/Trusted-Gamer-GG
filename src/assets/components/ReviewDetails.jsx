@@ -1,0 +1,131 @@
+import { useState, useEffect, useContext } from "react";
+import { useParams } from "react-router-dom";
+import { AuthContext } from "../Authentication/AuthContext";
+import { toast } from "react-toastify";
+
+const ReviewDetails = () => {
+  const { id } = useParams();
+  const { currentUser } = useContext(AuthContext);
+  const [review, setReview] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchReviewDetails = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/reviews/${id}`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        setReview(data);
+        setLoading(false);
+      } catch (error) {
+        toast.error("Error fetching review details: " + error.message);
+        setLoading(false);
+      }
+    };
+
+    fetchReviewDetails();
+  }, []);
+
+  const handleAddTowatchlist = async () => {
+    if (!currentUser) {
+      toast.error("Please log in to add to watchlist!");
+      return;
+    }
+
+    const watchlistItem = {
+      reviewId: review._id,
+      title: review.title,
+      genre: review.genre,
+      rating: review.rating,
+      year: review.publishingYear,
+      email: currentUser.email,
+    };
+
+    try {
+      const response = await fetch("http://localhost:5000/watchlist", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(watchlistItem),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to add to watchlist");
+      }
+
+      toast.success("Review added to watchlist!");
+    } catch (error) {
+      toast.error("Error adding to watchlist: " + error.message);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
+  }
+
+  if (!review) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="text-xl text-red-500">Review not found</div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen flex flex-col items-center bg-gray-50 py-8">
+      <div className="max-w-4xl w-full border mx-auto p-6 bg-white shadow-xl rounded-lg">
+        <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
+          {review.title}
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="flex justify-center">
+            <img
+              src={review.coverImage}
+              alt={review.title}
+              className="w-full h-80 object-cover rounded-lg shadow-md"
+            />
+          </div>
+          <div className="flex flex-col justify-between space-y-6">
+            <p className="text-lg text-gray-700">{review.description}</p>
+
+            <div>
+              <h3 className="font-semibold text-xl text-gray-800">Genre</h3>
+              <p className="text-gray-600">{review.genre}</p>
+            </div>
+
+            <div>
+              <h3 className="font-semibold text-xl text-gray-800">Rating</h3>
+              <p className="text-yellow-500">{`⭐ ${review.rating}`}</p>
+            </div>
+
+            <div>
+              <h3 className="font-semibold text-xl text-gray-800">
+                Reviewed By
+              </h3>
+              <p className="text-gray-600">
+                {review.reviewerName} ({review.email})
+              </p>
+            </div>
+
+            <button
+              onClick={handleAddTowatchlist}
+              className="w-full py-2 px-6 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition duration-300 ease-in-out"
+            >
+              Add to watchlist
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ReviewDetails;
