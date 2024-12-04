@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../Authentication/AuthContext";
+import Typewriter from "react-typewriter-effect";
 
 const Navbar = () => {
   const { currentUser } = useContext(AuthContext);
@@ -31,8 +32,11 @@ const Navbar = () => {
   return (
     <nav className="bg-gray-800 text-white px-6 py-4 flex justify-between items-center">
       <div className="text-2xl font-bold">
-        <Link to="/">
-          Trusted Gamer <span className="text-yellow-300">GG</span>
+        <Link to="/" className="whitespace-nowrap">
+          Trusted Gamer{" "}
+          <span className="text-yellow-300">
+            <Typewriter text="GG" cursorColor="yellow" />
+          </span>
         </Link>
       </div>
       <ul className="flex space-x-4">
