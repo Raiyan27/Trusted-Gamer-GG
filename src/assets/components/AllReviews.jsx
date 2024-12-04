@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import GameCard from "./GameCard"; // Import the GameCard component
+import GameCard from "./GameCard";
 
 const AllReviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -28,7 +28,11 @@ const AllReviews = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
   }
 
   return (

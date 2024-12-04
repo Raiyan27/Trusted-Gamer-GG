@@ -3,11 +3,14 @@ import { AuthContext } from "../Authentication/AuthContext";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import UpdateReviewModal from "./UpdateReviewModal";
 
 const MyReviews = () => {
   const { currentUser } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedReview, setSelectedReview] = useState(null);
 
   useEffect(() => {
     const fetchMyReviews = async () => {
@@ -28,7 +31,7 @@ const MyReviews = () => {
     };
 
     fetchMyReviews();
-  }, [currentUser.email]);
+  }, [reviews]);
 
   const handleDelete = async (id) => {
     Swal.fire({
@@ -62,8 +65,54 @@ const MyReviews = () => {
     });
   };
 
+  const openModal = (review) => {
+    setSelectedReview(review);
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+    setSelectedReview(null);
+  };
+
+  const handleUpdate = async (updatedReview) => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/review/${updatedReview._id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedReview),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to update review");
+      }
+
+      const updatedReviewData = await response.json();
+
+      setReviews((prevReviews) =>
+        prevReviews.map((review) =>
+          review._id === updatedReview._id ? updatedReviewData : review
+        )
+      );
+
+      closeModal();
+      Swal.fire("Updated!", "Your review has been updated.", "success");
+    } catch (error) {
+      toast.error("Error updating review: " + error.message);
+    }
+  };
+
   if (loading) {
-    return <span className="loading loading-spinner loading-lg"></span>;
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
   }
 
   return (
@@ -111,12 +160,12 @@ const MyReviews = () => {
                 </td>
                 <td className="px-6 py-4 text-center">
                   <div className="flex justify-center gap-2">
-                    <Link
-                      to={`/updateReview/${review._id}`}
+                    <button
+                      onClick={() => openModal(review)}
                       className="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600"
                     >
                       Update
-                    </Link>
+                    </button>
                     <button
                       onClick={() => handleDelete(review._id)}
                       className="bg-red-700 text-white px-4 py-2 rounded hover:bg-red-800"
@@ -130,6 +179,15 @@ const MyReviews = () => {
           </tbody>
         </table>
       </div>
+
+      {selectedReview && (
+        <UpdateReviewModal
+          isOpen={modalOpen}
+          onClose={closeModal}
+          review={selectedReview}
+          onUpdate={handleUpdate}
+        />
+      )}
     </div>
   );
 };
