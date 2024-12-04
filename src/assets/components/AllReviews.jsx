@@ -67,7 +67,7 @@ const AllReviews = () => {
   }
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 min-h-screen">
       <h2 className="text-3xl font-semibold text-center mb-8">All Reviews</h2>
 
       <div className="mb-6 flex flex-wrap gap-4 justify-center">
@@ -79,7 +79,7 @@ const AllReviews = () => {
             id="sortOption"
             value={sortOption}
             onChange={(e) => setSortOption(e.target.value)}
-            className="ml-4 p-2 border border-gray-300 rounded-md"
+            className="ml-4 p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white"
           >
             <option value="highestRated">Highest Rated</option>
             <option value="year">Year (Newest to Oldest)</option>
@@ -94,7 +94,7 @@ const AllReviews = () => {
             id="genreFilter"
             value={selectedGenre}
             onChange={(e) => setSelectedGenre(e.target.value)}
-            className="ml-4 p-2 border border-gray-300 rounded-md"
+            className="ml-4 p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white"
           >
             {genres.map((genre) => (
               <option key={genre} value={genre}>

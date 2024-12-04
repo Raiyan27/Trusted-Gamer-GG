@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { AuthContext } from "../Authentication/AuthContext";
 import { toast } from "react-toastify";
 
@@ -84,12 +83,14 @@ const AddReview = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-lg">
-        <h1 className="text-2xl font-semibold mb-4">Add New Review</h1>
+    <div className="flex justify-center items-center min-h-screen bg-gray-100 dark:bg-gray-800">
+      <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-md w-full max-w-lg">
+        <h1 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">
+          Add New Review
+        </h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
               Game Cover Image (URL)
             </label>
             <input
@@ -97,14 +98,14 @@ const AddReview = () => {
               name="coverImage"
               value={formData.coverImage}
               onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-500"
+              className="w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
               placeholder="https://example.com/image.jpg"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
               Game Title/Name
             </label>
             <input
@@ -112,21 +113,21 @@ const AddReview = () => {
               name="title"
               value={formData.title}
               onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-500"
+              className="w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
               placeholder="Enter game title"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
               Review Description
             </label>
             <textarea
               name="description"
               value={formData.description}
               onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-500"
+              className="w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
               rows="5"
               placeholder="Write your detailed review here"
               required
@@ -134,7 +135,7 @@ const AddReview = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
               Rating (1-10)
             </label>
             <input
@@ -142,7 +143,7 @@ const AddReview = () => {
               name="rating"
               value={formData.rating}
               onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-500"
+              className="w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
               placeholder="Enter a rating (1-10)"
               min="1"
               max="10"
@@ -151,7 +152,7 @@ const AddReview = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
               Publishing Year
             </label>
             <input
@@ -159,7 +160,7 @@ const AddReview = () => {
               name="publishingYear"
               value={formData.publishingYear}
               onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-500"
+              className="w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
               placeholder="Enter publishing year"
               min="1980"
               max={new Date().getFullYear()}
@@ -168,14 +169,14 @@ const AddReview = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
               Genre
             </label>
             <select
               name="genre"
               value={formData.genre}
               onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-500"
+              className="w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
               required
             >
               <option value="">Select a genre</option>
@@ -188,32 +189,32 @@ const AddReview = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
               User Email
             </label>
             <input
               type="email"
               value={currentUser?.email || ""}
               readOnly
-              className="w-full p-2 border border-gray-300 rounded-md bg-gray-100"
+              className="w-full p-2 border border-gray-300 rounded-md bg-gray-100 dark:bg-gray-600 dark:text-white"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
               User Name
             </label>
             <input
               type="text"
               value={currentUser?.displayName || ""}
               readOnly
-              className="w-full p-2 border border-gray-300 rounded-md bg-gray-100"
+              className="w-full p-2 border border-gray-300 rounded-md bg-gray-100 dark:bg-gray-600 dark:text-white"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full p-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:ring focus:ring-indigo-500"
+            className="w-full p-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:ring focus:ring-indigo-500 dark:bg-indigo-700 dark:hover:bg-indigo-800"
           >
             Submit Review
           </button>

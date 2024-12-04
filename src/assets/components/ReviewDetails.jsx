@@ -79,9 +79,9 @@ const ReviewDetails = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-gray-50 py-8">
-      <div className="max-w-6xl w-full border mx-auto p-12 bg-white shadow-xl rounded-lg">
-        <h2 className="text-4xl font-bold text-center text-gray-800 mb-8">
+    <div className="min-h-screen flex flex-col items-center bg-gray-50 dark:bg-gray-800 py-8">
+      <div className="max-w-6xl w-full border mx-auto p-12 bg-white shadow-xl rounded-lg dark:bg-gray-900 dark:border-gray-700">
+        <h2 className="text-4xl font-bold text-center text-gray-800 dark:text-white mb-8">
           {review.title}
         </h2>
 
@@ -95,43 +95,49 @@ const ReviewDetails = () => {
           </div>
           <div className="flex flex-col justify-between space-y-10">
             <div>
-              <h3 className="font-semibold text-xl text-gray-800">
+              <h3 className="font-semibold text-xl text-gray-800 dark:text-white">
                 Review Description
               </h3>
-              <p className="text-lg text-gray-700 break-words max-h-96 overflow-auto">
+              <p className="text-lg text-gray-700 break-words max-h-96 overflow-auto dark:text-gray-300">
                 {review.description}
               </p>
             </div>
 
             <div>
-              <h3 className="font-semibold text-xl text-gray-800">Genre</h3>
-              <p className="text-gray-600 badge">{review.genre}</p>
+              <h3 className="font-semibold text-xl text-gray-800 dark:text-white">
+                Genre
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400 badge">
+                {review.genre}
+              </p>
             </div>
 
             <div>
-              <h3 className="font-semibold text-xl text-gray-800">Rating</h3>
+              <h3 className="font-semibold text-xl text-gray-800 dark:text-white">
+                Rating
+              </h3>
               <p className="text-yellow-500">{`⭐ ${review.rating}`}</p>
             </div>
 
             <div>
-              <h3 className="font-semibold text-xl text-gray-800">
+              <h3 className="font-semibold text-xl text-gray-800 dark:text-white">
                 Release Year
               </h3>
               <p className="text-yellow-500">{`${review.publishingYear}`}</p>
             </div>
 
             <div>
-              <h3 className="font-semibold text-xl text-gray-800">
+              <h3 className="font-semibold text-xl text-gray-800 dark:text-white">
                 Reviewed By
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-600 dark:text-gray-400">
                 {review.name} ({review.email})
               </p>
             </div>
 
             <button
               onClick={handleAddTowatchlist}
-              className="w-full py-3 px-6 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition duration-300 ease-in-out"
+              className="w-full py-3 px-6 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition duration-300 ease-in-out dark:bg-indigo-700 dark:hover:bg-indigo-800"
             >
               Add to watchlist
             </button>

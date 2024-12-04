@@ -6,6 +6,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthProvider } from "./assets/Authentication/AuthContext";
 
+import AppLayout from "./AppLayout"; // Import the global layout
 import Root from "./assets/pages/Root";
 import ErrorPage from "./assets/pages/ErrorPage";
 import HomePage from "./assets/pages/HomePage";
@@ -17,6 +18,7 @@ import AllReviews from "./assets/components/AllReviews";
 import MyReviews from "./assets/components/MyReviews";
 import ReviewDetails from "./assets/components/ReviewDetails";
 import MyWatchlist from "./assets/components/MyWatchList";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -70,10 +72,13 @@ const router = createBrowserRouter([
     ],
   },
 ]);
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <AuthProvider>
-      <RouterProvider router={router} />
+      <AppLayout>
+        <RouterProvider router={router} />
+      </AppLayout>
       <ToastContainer
         position="top-center"
         autoClose={3000}

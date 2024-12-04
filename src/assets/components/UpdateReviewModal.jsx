@@ -54,7 +54,7 @@ const UpdateReviewModal = ({ isOpen, onClose, review, onUpdate }) => {
 
   return (
     <div className="modal modal-open">
-      <div className="modal-box">
+      <div className="modal-box bg-white dark:bg-gray-800 text-gray-800 dark:text-white">
         <h2 className="text-2xl mb-4">Update Review</h2>
         {error && <div className="text-red-500 mb-4">{error}</div>}
 
@@ -64,7 +64,7 @@ const UpdateReviewModal = ({ isOpen, onClose, review, onUpdate }) => {
             type="text"
             value={updatedTitle}
             onChange={(e) => setUpdatedTitle(e.target.value)}
-            className="input input-bordered w-full mb-4"
+            className="input input-bordered w-full mb-4 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white"
           />
         </div>
 
@@ -74,7 +74,7 @@ const UpdateReviewModal = ({ isOpen, onClose, review, onUpdate }) => {
             type="number"
             value={updatedRating}
             onChange={(e) => setUpdatedRating(e.target.value)}
-            className="input input-bordered w-full mb-4"
+            className="input input-bordered w-full mb-4 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white"
             min="0"
             max="10"
           />
@@ -86,7 +86,7 @@ const UpdateReviewModal = ({ isOpen, onClose, review, onUpdate }) => {
             type="text"
             value={updatedGenre}
             onChange={(e) => setUpdatedGenre(e.target.value)}
-            className="input input-bordered w-full mb-4"
+            className="input input-bordered w-full mb-4 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white"
           />
         </div>
 
@@ -96,7 +96,7 @@ const UpdateReviewModal = ({ isOpen, onClose, review, onUpdate }) => {
             type="number"
             value={updatedYear}
             onChange={(e) => setUpdatedYear(e.target.value)}
-            className="input input-bordered w-full mb-4"
+            className="input input-bordered w-full mb-4 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white"
             min="1900"
             max={new Date().getFullYear()}
           />
@@ -107,7 +107,7 @@ const UpdateReviewModal = ({ isOpen, onClose, review, onUpdate }) => {
           <textarea
             value={updatedDescription}
             onChange={(e) => setUpdatedDescription(e.target.value)}
-            className="textarea textarea-bordered w-full mb-4"
+            className="textarea textarea-bordered w-full mb-4 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white"
             placeholder="Write a description of your review"
           ></textarea>
         </div>
@@ -118,7 +118,7 @@ const UpdateReviewModal = ({ isOpen, onClose, review, onUpdate }) => {
             type="url"
             value={updatedCoverImage}
             onChange={(e) => setUpdatedCoverImage(e.target.value)}
-            className="input input-bordered w-full mb-4"
+            className="input input-bordered w-full mb-4 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white"
             placeholder="Enter URL of the cover image"
           />
         </div>
@@ -126,13 +126,13 @@ const UpdateReviewModal = ({ isOpen, onClose, review, onUpdate }) => {
         <div className="flex gap-2 justify-center">
           <button
             onClick={handleUpdate}
-            className="bg-indigo-500 text-white px-4 py-2 rounded"
+            className="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600 dark:bg-indigo-600 dark:hover:bg-indigo-700"
           >
             Update
           </button>
           <button
             onClick={onClose}
-            className="bg-gray-500 text-white px-4 py-2 rounded"
+            className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 dark:bg-gray-700 dark:hover:bg-gray-800"
           >
             Cancel
           </button>

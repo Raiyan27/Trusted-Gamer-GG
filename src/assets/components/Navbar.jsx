@@ -31,7 +31,9 @@ const Navbar = () => {
   return (
     <nav className="bg-gray-800 text-white px-6 py-4 flex justify-between items-center">
       <div className="text-2xl font-bold">
-        <Link to="/">Trusted Gamer GG</Link>
+        <Link to="/">
+          Trusted Gamer <span className="text-yellow-300">GG</span>
+        </Link>
       </div>
       <ul className="flex space-x-4">
         <li>

@@ -1,7 +1,10 @@
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white py-6 text-center">
-      <p>© 2024 Chill Gamer. All rights reserved.</p>
+    <footer className="bg-gray-800 text-white py-6 text-center">
+      <p>
+        © 2024 Trusted Gamer <span className="text-yellow-300">GG</span>. All
+        rights reserved.
+      </p>
     </footer>
   );
 };

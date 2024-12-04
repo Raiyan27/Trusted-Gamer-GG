@@ -85,13 +85,13 @@ const MyWatchlist = () => {
       <h2 className="text-3xl font-semibold text-center mb-8">My Watchlist</h2>
 
       {watchlist.length === 0 ? (
-        <div className="text-center text-xl text-gray-500">
+        <div className="text-center text-xl text-gray-500 dark:text-gray-300">
           Your watchlist is empty!
         </div>
       ) : (
         <div className="overflow-x-auto">
-          <table className="w-full table-auto bg-white shadow-md rounded-lg">
-            <thead className="bg-indigo-600 text-white">
+          <table className="w-full table-auto bg-white dark:bg-gray-800 shadow-md rounded-lg">
+            <thead className="bg-indigo-600 text-white dark:bg-indigo-700">
               <tr>
                 <th className="px-6 py-3 text-left text-sm font-medium">#</th>
                 <th className="px-6 py-3 text-left text-sm font-medium">
@@ -113,33 +113,36 @@ const MyWatchlist = () => {
             </thead>
             <tbody>
               {watchlist.map((item, index) => (
-                <tr key={item._id} className="border-b hover:bg-gray-50">
-                  <td className="px-6 py-4 text-left text-lg text-gray-800">
+                <tr
+                  key={item._id}
+                  className="border-b hover:bg-gray-50 dark:hover:bg-gray-700"
+                >
+                  <td className="px-6 py-4 text-left text-lg text-gray-800 dark:text-white">
                     {index + 1}
                   </td>
-                  <td className="px-6 py-4 text-left text-lg text-gray-800">
+                  <td className="px-6 py-4 text-left text-lg text-gray-800 dark:text-white">
                     {item.title}
                   </td>
-                  <td className="px-6 py-4 text-center text-lg text-gray-800">
+                  <td className="px-6 py-4 text-center text-lg text-gray-800 dark:text-white">
                     ⭐ {item.rating}
                   </td>
-                  <td className="px-6 py-4 text-center text-lg text-gray-800">
+                  <td className="px-6 py-4 text-center text-lg text-gray-800 dark:text-white">
                     {item.genre}
                   </td>
-                  <td className="px-6 py-4 text-center text-lg text-gray-800">
+                  <td className="px-6 py-4 text-center text-lg text-gray-800 dark:text-white">
                     {item.year}
                   </td>
                   <td className="px-6 py-4 text-center">
                     <div className="flex justify-center gap-2">
                       <button
                         onClick={() => handleRemove(item._id)}
-                        className="bg-red-700 text-white px-4 py-2 rounded hover:bg-red-800"
+                        className="bg-red-700 text-white px-4 py-2 rounded hover:bg-red-800 dark:bg-red-600 dark:hover:bg-red-700"
                       >
                         Remove
                       </button>
                       <button
                         onClick={() => handleExploreDetails(item.reviewId)}
-                        className="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600"
+                        className="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600 dark:bg-indigo-600 dark:hover:bg-indigo-700"
                       >
                         Explore Details
                       </button>
