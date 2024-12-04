@@ -14,7 +14,16 @@ const AddReview = () => {
     genre: "",
   });
 
-  const genres = ["Action", "RPG", "Adventure", "Shooter", "Puzzle", "Horror"];
+  const genres = [
+    "Action",
+    "RPG",
+    "Adventure",
+    "Shooter",
+    "Puzzle",
+    "Horror",
+    "Open World",
+    "Online Multiplayer",
+  ];
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -42,6 +51,7 @@ const AddReview = () => {
     const review = {
       ...formData,
       email: currentUser.email,
+      name: currentUser.displayName,
     };
 
     try {
@@ -184,6 +194,18 @@ const AddReview = () => {
             <input
               type="email"
               value={currentUser?.email || ""}
+              readOnly
+              className="w-full p-2 border border-gray-300 rounded-md bg-gray-100"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              User Name
+            </label>
+            <input
+              type="text"
+              value={currentUser?.displayName || ""}
               readOnly
               className="w-full p-2 border border-gray-300 rounded-md bg-gray-100"
             />

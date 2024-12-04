@@ -1,18 +1,31 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../Authentication/AuthContext";
 
 const Navbar = () => {
   const { currentUser } = useContext(AuthContext);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const auth = getAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (currentUser) {
+      setDropdownOpen(false);
+    }
+  }, [currentUser]);
 
   const handleLogout = async () => {
     try {
       await signOut(auth);
+      navigate("/");
     } catch (error) {
       console.error("Logout failed:", error);
     }
+  };
+
+  const toggleDropdown = () => {
+    setDropdownOpen((prevState) => !prevState);
   };
 
   return (
@@ -51,27 +64,43 @@ const Navbar = () => {
           </ul>
         )}
       </ul>
+
       <ul className="flex space-x-4">
         {currentUser ? (
-          <>
-            <li className="flex items-center space-x-2">
+          <li className="relative group">
+            <div
+              className="flex items-center cursor-pointer"
+              onClick={toggleDropdown}
+            >
               {currentUser.photoURL ? (
                 <img
-                  src={currentUser.photoURL}
+                  src={currentUser.photoURL || "/propicdemo.png"}
                   alt="User Avatar"
-                  className="w-8 h-8 rounded-full"
+                  className="w-12 h-12 rounded-full"
                 />
               ) : (
                 <span className="text-gray-400">Profile</span>
               )}
-              <button
-                onClick={handleLogout}
-                className="ml-2 cursor-pointer hover:text-gray-400"
-              >
-                Logout
-              </button>
-            </li>
-          </>
+
+              <span className="absolute right-0 top-10 hidden group-hover:block text-sm bg-gray-700 text-white p-2 rounded-md shadow-lg">
+                {currentUser.displayName || "User"}
+              </span>
+            </div>
+
+            {dropdownOpen && (
+              <div className="absolute right-0 mt-2 bg-gray-700 p-2 rounded-lg shadow-lg w-48 z-10">
+                <div className="text-white text-sm p-2">
+                  {currentUser.displayName}
+                </div>
+                <button
+                  onClick={handleLogout}
+                  className="w-full text-left text-red-500 hover:bg-gray-600 p-2 rounded-md"
+                >
+                  Logout
+                </button>
+              </div>
+            )}
+          </li>
         ) : (
           <>
             <li>
