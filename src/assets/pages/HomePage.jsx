@@ -2,13 +2,15 @@ import { useEffect, useState } from "react";
 import GameCard from "../components/GameCard";
 
 const HomePage = () => {
-  const [highestRatedGames, setHighestRatedGames] = useState([]);
+  const [games, setGames] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/highestRated")
+    fetch("http://localhost:5000/reviews")
       .then((res) => res.json())
-      .then((data) => setHighestRatedGames(data));
+      .then((data) => setGames(data));
   }, []);
+
+  const topRatedGames = games.sort((a, b) => b.rating - a.rating).slice(0, 6);
 
   return (
     <div>
@@ -19,7 +21,7 @@ const HomePage = () => {
       <div className="my-8 px-6">
         <h2 className="text-3xl font-bold mb-6">Highest Rated Games</h2>
         <div className="grid grid-cols-3 gap-6">
-          {highestRatedGames.map((game) => (
+          {topRatedGames.map((game) => (
             <GameCard key={game.id} game={game} />
           ))}
         </div>

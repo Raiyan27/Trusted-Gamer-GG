@@ -10,7 +10,7 @@ const GameCard = ({ game }) => {
       />
       <h3 className="text-xl font-semibold text-gray-900">{game.title}</h3>
       <p className="text-sm text-gray-500 mt-1">
-        {game.genre} - {game.year}
+        {game.genre} - {game.publishingYear}
       </p>
       <div className="flex items-center mt-2">
         <span className="text-yellow-500">⭐ {game.rating}</span>
