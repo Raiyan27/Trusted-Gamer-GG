@@ -7,6 +7,7 @@ import {
 } from "../Authentication/firebase.init";
 import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth"; // Import GoogleAuthProvider and signInWithPopup
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -50,10 +51,12 @@ const Register = () => {
     const provider = new GoogleAuthProvider();
     try {
       const userCredential = await signInWithPopup(auth, provider);
+
       toast.success("Login Successful!");
       navigate("/");
     } catch (error) {
       toast.error("Google login failed.");
+      console.error("Google login error:", error.message);
     }
   };
 
