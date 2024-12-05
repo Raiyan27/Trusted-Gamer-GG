@@ -1,6 +1,9 @@
 ## Live Demo
 
-You can view the live version of the site here: [Live Demo Link]
+You can view the live version of the site here:
+Firebase: https://trusted-gamer-gg.web.app/ OR
+Surge: https://trusted-gamer-gg.surge.sh/ OR
+Netlify: https://trusted-gamer-gg.netlify.app/
 
 # Trusted Gamer GG: A Game Review Application
 
