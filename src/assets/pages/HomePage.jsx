@@ -1,11 +1,18 @@
 import { useEffect, useState } from "react";
 import GameCard from "../components/GameCard";
+import { Fade } from "react-awesome-reveal";
 
 const HomePage = () => {
   const [games, setGames] = useState([]);
   const [latestReviews, setLatestReviews] = useState([]);
   const [trendingGames, setTrendingGames] = useState([]);
   const [upcomingGames, setUpcomingGames] = useState([]);
+
+  const [loadingGames, setLoadingGames] = useState(true);
+  const [loadingReviews, setLoadingReviews] = useState(true);
+  const [loadingTrendingGames, setLoadingTrendingGames] = useState(true);
+  const [loadingUpcomingGames, setLoadingUpcomingGames] = useState(true);
+
   const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem("darkMode") === "true";
   });
@@ -33,12 +40,17 @@ const HomePage = () => {
           }))
           .sort((a, b) => b.count - a.count);
         setTrendingGames(trendingGamesData.slice(0, 3));
+
+        setLoadingGames(false);
+        setLoadingReviews(false);
+        setLoadingTrendingGames(false);
       });
 
     fetch("http://localhost:5000/upcoming")
       .then((res) => res.json())
       .then((data) => {
         setUpcomingGames(data);
+        setLoadingUpcomingGames(false);
       });
   }, [darkMode]);
 
@@ -77,6 +89,12 @@ const HomePage = () => {
         "url('https://i.ibb.co.com/KG6sjLc/ultra-wide-gaming-xggy0lln5knwa073.jpg')",
     },
   ];
+
+  const renderLoadingSpinner = () => (
+    <div className="flex justify-center items-center min-h-screen">
+      <span className="loading loading-spinner loading-lg"></span>
+    </div>
+  );
 
   return (
     <div className="p-4 min-h-screen bg-gray-100 dark:bg-gray-900 dark:text-white">
@@ -129,7 +147,9 @@ const HomePage = () => {
           <h2 className="text-3xl font-semibold text-center mb-6">
             Highest Rated Games
           </h2>
-          {topRatedGames.length === 0 ? (
+          {loadingGames ? (
+            renderLoadingSpinner()
+          ) : topRatedGames.length === 0 ? (
             <p className="text-center text-xl font-semibold text-gray-500">
               No top-rated games available.
             </p>
@@ -146,7 +166,9 @@ const HomePage = () => {
           <h2 className="text-3xl font-semibold text-center mb-6">
             Latest Game Reviews
           </h2>
-          {latestReviews.length === 0 ? (
+          {loadingReviews ? (
+            renderLoadingSpinner()
+          ) : latestReviews.length === 0 ? (
             <p className="text-center text-xl font-semibold text-gray-500">
               No recent reviews available.
             </p>
@@ -163,7 +185,9 @@ const HomePage = () => {
           <h2 className="text-3xl font-semibold text-center mb-6">
             Upcoming Games
           </h2>
-          {upcomingGames.length === 0 ? (
+          {loadingUpcomingGames ? (
+            renderLoadingSpinner()
+          ) : upcomingGames.length === 0 ? (
             <p className="text-center text-xl font-semibold text-gray-500">
               No upcoming games available.
             </p>
@@ -182,7 +206,9 @@ const HomePage = () => {
                   <h3 className="text-xl font-medium dark:text-white text-black">
                     {game.title}
                   </h3>
-                  <p className="text-gray-400">{`Expected Release: ${game.releaseDate}`}</p>
+                  <Fade direction="up" cascade>
+                    <p className="text-gray-400">{`Expected Release: ${game.releaseDate}`}</p>
+                  </Fade>
                 </div>
               ))}
             </div>
@@ -193,7 +219,9 @@ const HomePage = () => {
           <h2 className="text-3xl font-semibold text-center mb-6">
             Most Reviewed Games
           </h2>
-          {trendingGames.length === 0 ? (
+          {loadingTrendingGames ? (
+            renderLoadingSpinner()
+          ) : trendingGames.length === 0 ? (
             <p className="text-center text-xl font-semibold text-gray-500">
               No reviewed games available.
             </p>
