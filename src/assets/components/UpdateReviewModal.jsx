@@ -1,5 +1,5 @@
-import { useState } from "react";
-
+import { useState, useContext } from "react";
+import { AuthContext } from "../Authentication/AuthContext";
 const UpdateReviewModal = ({ isOpen, onClose, review, onUpdate }) => {
   const [updatedTitle, setUpdatedTitle] = useState(review.title);
   const [updatedRating, setUpdatedRating] = useState(review.rating);
@@ -12,6 +12,7 @@ const UpdateReviewModal = ({ isOpen, onClose, review, onUpdate }) => {
     review.coverImage || ""
   );
   const [error, setError] = useState("");
+  const { currentUser } = useContext(AuthContext);
 
   const handleUpdate = () => {
     if (
@@ -120,6 +121,29 @@ const UpdateReviewModal = ({ isOpen, onClose, review, onUpdate }) => {
             onChange={(e) => setUpdatedCoverImage(e.target.value)}
             className="input input-bordered w-full mb-4 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white"
             placeholder="Enter URL of the cover image"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            User Email
+          </label>
+          <input
+            type="email"
+            value={currentUser?.email || ""}
+            readOnly
+            className="w-full p-2 border border-gray-300 rounded-md bg-gray-100 dark:bg-gray-600 dark:text-white"
+          />
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            User Name
+          </label>
+          <input
+            type="text"
+            value={currentUser?.displayName || ""}
+            readOnly
+            className="w-full p-2 border border-gray-300 rounded-md bg-gray-100 dark:bg-gray-600 dark:text-white"
           />
         </div>
 

@@ -35,7 +35,7 @@ const AppLayout = ({ children }) => {
     >
       {children}
       <div
-        className="fixed bottom-6 left-6 p-3 cursor-pointer"
+        className="fixed bottom-1 left-1 md:bottom-6 md:left-6 p-3 cursor-pointer"
         onClick={toggleDarkMode}
       >
         <Lottie

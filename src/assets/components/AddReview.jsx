@@ -83,8 +83,8 @@ const AddReview = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 dark:bg-gray-800">
-      <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-md w-full max-w-lg">
+    <div className="flex justify-center items-center min-h-screen bg-gray-100 dark:bg-gray-900">
+      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md w-full max-w-lg">
         <h1 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">
           Add New Review
         </h1>

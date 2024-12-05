@@ -79,7 +79,7 @@ const ReviewDetails = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-gray-50 dark:bg-gray-800 py-8">
+    <div className="min-h-screen flex flex-col items-center bg-gray-50 dark:bg-gray-900 py-8 px-3 md:px-0">
       <div className="max-w-6xl w-full border mx-auto p-12 bg-white shadow-xl rounded-lg dark:bg-gray-900 dark:border-gray-700">
         <h2 className="text-4xl font-bold text-center text-gray-800 dark:text-white mb-8">
           {review.title}
