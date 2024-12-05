@@ -54,13 +54,16 @@ const AddReview = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:5000/reviews", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(review),
-      });
+      const res = await fetch(
+        "https://trusted-gamer-gg-server.vercel.app/reviews",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(review),
+        }
+      );
 
       const data = await res.json();
 
@@ -161,7 +164,7 @@ const AddReview = () => {
               value={formData.publishingYear}
               onChange={handleChange}
               className="w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-              placeholder="Enter publishing year"
+              placeholder="Enter publishing year (1980 - later)"
               min="1980"
               max={new Date().getFullYear()}
               required

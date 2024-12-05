@@ -16,7 +16,7 @@ const MyReviews = () => {
     const fetchMyReviews = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/myReviews?email=${currentUser.email}`
+          `https://trusted-gamer-gg-server.vercel.app/myReviews?email=${currentUser.email}`
         );
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -45,9 +45,12 @@ const MyReviews = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const response = await fetch(`http://localhost:5000/reviews/${id}`, {
-            method: "DELETE",
-          });
+          const response = await fetch(
+            `https://trusted-gamer-gg-server.vercel.app/reviews/${id}`,
+            {
+              method: "DELETE",
+            }
+          );
 
           if (!response.ok) {
             throw new Error("Failed to delete review");
@@ -78,7 +81,7 @@ const MyReviews = () => {
   const handleUpdate = async (updatedReview) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/review/${updatedReview._id}`,
+        `https://trusted-gamer-gg-server.vercel.app/review/${updatedReview._id}`,
         {
           method: "PATCH",
           headers: {

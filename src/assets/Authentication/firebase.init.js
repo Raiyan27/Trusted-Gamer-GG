@@ -14,12 +14,12 @@ import {
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCTRIgsyfNs9SdFVQx0JPsrm475ooJIhmA",
-  authDomain: "trusted-gamer-gg.firebaseapp.com",
-  projectId: "trusted-gamer-gg",
-  storageBucket: "trusted-gamer-gg.firebasestorage.app",
-  messagingSenderId: "696659850349",
-  appId: "1:696659850349:web:41d0d83685e2c7cce87b64",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
 // Initialize Firebase

@@ -19,7 +19,7 @@ const HomePage = () => {
   const [activeSlide, setActiveSlide] = useState(0);
 
   useEffect(() => {
-    fetch("http://localhost:5000/reviews")
+    fetch("https://trusted-gamer-gg-server.vercel.app/reviews")
       .then((res) => res.json())
       .then((data) => {
         setGames(data);
@@ -46,7 +46,7 @@ const HomePage = () => {
         setLoadingTrendingGames(false);
       });
 
-    fetch("http://localhost:5000/upcoming")
+    fetch("https://trusted-gamer-gg-server.vercel.app/upcoming")
       .then((res) => res.json())
       .then((data) => {
         setUpcomingGames(data);

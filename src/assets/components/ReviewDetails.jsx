@@ -12,7 +12,9 @@ const ReviewDetails = () => {
   useEffect(() => {
     const fetchReviewDetails = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/reviews/${id}`);
+        const response = await fetch(
+          `https://trusted-gamer-gg-server.vercel.app/reviews/${id}`
+        );
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -44,13 +46,16 @@ const ReviewDetails = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/watchlist", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(watchlistItem),
-      });
+      const response = await fetch(
+        "https://trusted-gamer-gg-server.vercel.app/watchlist",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(watchlistItem),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Failed to add to watchlist");

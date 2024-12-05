@@ -19,7 +19,7 @@ const MyWatchlist = () => {
 
       try {
         const response = await fetch(
-          `http://localhost:5000/watchlist?email=${currentUser.email}`
+          `https://trusted-gamer-gg-server.vercel.app/watchlist?email=${currentUser.email}`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch watchlist");
@@ -49,7 +49,7 @@ const MyWatchlist = () => {
       if (result.isConfirmed) {
         try {
           const response = await fetch(
-            `http://localhost:5000/watchlist/${id}`,
+            `https://trusted-gamer-gg-server.vercel.app/watchlist/${id}`,
             {
               method: "DELETE",
             }

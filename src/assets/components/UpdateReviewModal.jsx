@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "../Authentication/AuthContext";
+
 const UpdateReviewModal = ({ isOpen, onClose, review, onUpdate }) => {
   const [updatedTitle, setUpdatedTitle] = useState(review.title);
   const [updatedRating, setUpdatedRating] = useState(review.rating);
@@ -13,6 +14,17 @@ const UpdateReviewModal = ({ isOpen, onClose, review, onUpdate }) => {
   );
   const [error, setError] = useState("");
   const { currentUser } = useContext(AuthContext);
+
+  const genres = [
+    "Action",
+    "RPG",
+    "Adventure",
+    "Shooter",
+    "Puzzle",
+    "Horror",
+    "Open World",
+    "Online Multiplayer",
+  ];
 
   const handleUpdate = () => {
     if (
@@ -83,12 +95,20 @@ const UpdateReviewModal = ({ isOpen, onClose, review, onUpdate }) => {
 
         <div>
           <label>Genre</label>
-          <input
-            type="text"
+          <select
             value={updatedGenre}
             onChange={(e) => setUpdatedGenre(e.target.value)}
-            className="input input-bordered w-full mb-4 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white"
-          />
+            className="select select-bordered w-full mb-4 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white"
+          >
+            <option value="" disabled>
+              Select a genre
+            </option>
+            {genres.map((genre) => (
+              <option key={genre} value={genre}>
+                {genre}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div>
