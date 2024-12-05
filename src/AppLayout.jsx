@@ -1,9 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import Lottie from "lottie-react";
+import animationData from "./assets/toggleAnimation.json";
 
 const AppLayout = ({ children }) => {
   const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem("darkMode") === "true";
   });
+
+  const lottieRef = useRef(null);
 
   useEffect(() => {
     if (darkMode) {
@@ -17,6 +21,10 @@ const AppLayout = ({ children }) => {
     const newMode = !darkMode;
     setDarkMode(newMode);
     localStorage.setItem("darkMode", newMode);
+
+    if (lottieRef.current) {
+      lottieRef.current.playSegments(newMode ? [10, 40] : [40, 80], true);
+    }
   };
 
   return (
@@ -26,12 +34,18 @@ const AppLayout = ({ children }) => {
       }`}
     >
       {children}
-      <button
+      <div
+        className="fixed bottom-6 left-6 p-3 cursor-pointer"
         onClick={toggleDarkMode}
-        className="fixed bottom-6 left-6 p-3 bg-blue-500 dark:bg-yellow-400 text-white dark:text-black rounded-full"
       >
-        {darkMode ? "Light Mode" : "Dark Mode"}
-      </button>
+        <Lottie
+          lottieRef={lottieRef}
+          animationData={animationData}
+          loop={false}
+          autoplay={false}
+          style={{ width: 60, height: 60, borderRadius: "50%" }}
+        />
+      </div>
     </div>
   );
 };

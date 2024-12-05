@@ -37,17 +37,6 @@ const HomePage = () => {
 
   const topRatedGames = games.sort((a, b) => b.rating - a.rating).slice(0, 6);
 
-  const toggleDarkMode = () => {
-    const newMode = !darkMode;
-    setDarkMode(newMode);
-    localStorage.setItem("darkMode", newMode);
-    if (newMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  };
-
   const goToPreviousSlide = () => {
     setActiveSlide((prev) => (prev === 0 ? 2 : prev - 1));
   };
@@ -188,13 +177,6 @@ const HomePage = () => {
             </div>
           )}
         </div>
-
-        <button
-          onClick={toggleDarkMode}
-          className="fixed bottom-6 left-6 bg-blue-500 dark:bg-yellow-400 text-white dark:text-black p-3 rounded-full shadow-lg transition-transform transform hover:scale-110 focus:outline-none"
-        >
-          {darkMode ? "Light Mode" : "Dark Mode"}
-        </button>
       </div>
     </div>
   );

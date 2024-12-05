@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../Authentication/AuthContext";
-import Typewriter from "react-typewriter-effect";
+import { Typewriter } from "react-simple-typewriter";
 
 const Navbar = () => {
   const { currentUser } = useContext(AuthContext);
@@ -31,11 +31,19 @@ const Navbar = () => {
 
   return (
     <nav className="bg-gray-800 text-white px-6 py-4 flex justify-between items-center">
-      <div className="text-2xl font-bold">
-        <Link to="/" className="whitespace-nowrap">
+      <div className="text-2xl font-bold w-32">
+        <Link to="/" className="flex gap-2 whitespace-nowrap">
           Trusted Gamer{" "}
           <span className="text-yellow-300">
-            <Typewriter text="GG" cursorColor="yellow" />
+            <Typewriter
+              words={["GG", "Good Game"]}
+              loop={true}
+              cursor
+              cursorStyle="|"
+              typeSpeed={70}
+              deleteSpeed={50}
+              delaySpeed={1000}
+            />
           </span>
         </Link>
       </div>
