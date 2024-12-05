@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import GameCard from "../components/GameCard";
 import { Fade } from "react-awesome-reveal";
+import { Helmet } from "react-helmet";
 
 const HomePage = () => {
   const [games, setGames] = useState([]);
@@ -98,6 +99,10 @@ const HomePage = () => {
 
   return (
     <div className="p-4 min-h-screen bg-gray-100 dark:bg-gray-900 dark:text-white">
+      <Helmet>
+        <title>Trusted Gamer GG - Home</title>
+        <meta name="description" content="Helmet application" />
+      </Helmet>
       <div className="container mx-auto">
         <h1 className="text-4xl font-bold text-center mb-8">Home</h1>
 

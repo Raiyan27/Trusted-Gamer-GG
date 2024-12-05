@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import GameCard from "./GameCard";
+import { Helmet } from "react-helmet";
 
 const AllReviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -70,6 +71,9 @@ const AllReviews = () => {
 
   return (
     <div className="container mx-auto p-4 min-h-screen">
+      <Helmet>
+        <title>Trusted Gamer GG - All Reviews</title>
+      </Helmet>
       <h2 className="text-3xl font-semibold text-center mb-8">All Reviews</h2>
 
       <div className="mb-6 flex flex-wrap gap-4 justify-center">

@@ -3,6 +3,7 @@ import { AuthContext } from "../Authentication/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const MyWatchlist = () => {
   const { currentUser } = useContext(AuthContext);
@@ -82,6 +83,9 @@ const MyWatchlist = () => {
 
   return (
     <div className="container mx-auto p-4 min-h-screen">
+      <Helmet>
+        <title>Trusted Gamer GG - My WatchList</title>
+      </Helmet>
       <h2 className="text-3xl font-semibold text-center mb-8">My Watchlist</h2>
 
       {watchlist.length === 0 ? (

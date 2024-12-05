@@ -8,6 +8,7 @@ import {
 } from "../Authentication/firebase.init";
 import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
+import { Helmet } from "react-helmet";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -42,6 +43,9 @@ const Login = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-50 dark:bg-gray-900">
+      <Helmet>
+        <title>Trusted Gamer GG - Login</title>
+      </Helmet>
       <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-sm">
         <h2 className="text-3xl font-semibold text-center text-gray-900 dark:text-white mb-6">
           Welcome Back to Trusted Gamer GG

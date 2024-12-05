@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import UpdateReviewModal from "./UpdateReviewModal";
+import { Helmet } from "react-helmet";
 
 const MyReviews = () => {
   const { currentUser } = useContext(AuthContext);
@@ -120,6 +121,9 @@ const MyReviews = () => {
 
   return (
     <div className="container mx-auto p-4 min-h-screen bg-gray-50 dark:bg-gray-900">
+      <Helmet>
+        <title>Trusted Gamer GG - My Review</title>
+      </Helmet>
       <h2 className="text-3xl font-semibold text-center mb-8 text-gray-800 dark:text-white">
         My Reviews
       </h2>

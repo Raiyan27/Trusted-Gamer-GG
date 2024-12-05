@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "../Authentication/AuthContext";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet";
 
 const AddReview = () => {
   const { currentUser } = useContext(AuthContext);
@@ -87,6 +88,9 @@ const AddReview = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100 dark:bg-gray-900">
+      <Helmet>
+        <title>Trusted Gamer GG - Add Review</title>
+      </Helmet>
       <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md w-full max-w-lg">
         <h1 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">
           Add New Review
