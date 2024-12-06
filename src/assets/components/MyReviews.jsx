@@ -122,76 +122,88 @@ const MyReviews = () => {
   return (
     <div className="container mx-auto p-4 min-h-screen bg-gray-50 dark:bg-gray-900">
       <Helmet>
-        <title>Trusted Gamer GG - My Review</title>
+        <title>Trusted Gamer GG - My Reviews</title>
       </Helmet>
       <h2 className="text-3xl font-semibold text-center mb-8 text-gray-800 dark:text-white">
         My Reviews
       </h2>
-      <div className="overflow-x-auto">
-        <table className="w-full table-auto bg-white shadow-md rounded-lg dark:bg-gray-800 dark:text-white">
-          <thead className="bg-indigo-600 text-white dark:bg-indigo-700">
-            <tr>
-              <th className="px-6 py-3 text-left text-sm font-medium">#</th>
-              <th className="px-6 py-3 text-left text-sm font-medium">
-                Game Title
-              </th>
-              <th className="px-6 py-3 text-center text-sm font-medium">
-                Rating
-              </th>
-              <th className="px-6 py-3 text-center text-sm font-medium">
-                Genre
-              </th>
-              <th className="px-6 py-3 text-center text-sm font-medium">
-                Year
-              </th>
-              <th className="px-6 py-3 text-center text-sm font-medium">
-                Actions
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {reviews.map((review, index) => (
-              <tr
-                key={review._id}
-                className="border-b hover:bg-gray-50 dark:hover:bg-gray-700"
-              >
-                <td className="px-6 py-4 text-left text-lg text-gray-800 dark:text-gray-200">
-                  {index + 1}
-                </td>
-                <td className="px-6 py-4 text-left text-lg text-gray-800 dark:text-gray-200">
-                  {review.title}
-                </td>
-                <td className="px-6 py-4 text-center text-lg text-gray-800 dark:text-gray-200">
-                  ⭐ {review.rating}
-                </td>
-                <td className="px-6 py-4 text-center text-lg text-gray-800 dark:text-gray-200">
-                  {review.genre}
-                </td>
-                <td className="px-6 py-4 text-center text-lg text-gray-800 dark:text-gray-200">
-                  {review.publishingYear}
-                </td>
-                <td className="px-6 py-4 text-center">
-                  <div className="flex justify-center gap-2">
-                    <button
-                      onClick={() => openModal(review)}
-                      className="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600 dark:bg-indigo-600 dark:hover:bg-indigo-700"
-                    >
-                      Update
-                    </button>
-                    <button
-                      onClick={() => handleDelete(review._id)}
-                      className="bg-red-700 text-white px-4 py-2 rounded hover:bg-red-800 dark:bg-red-800 dark:hover:bg-red-900"
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
 
+      {reviews.length === 0 ? (
+        <div className="text-center text-xl text-gray-500 dark:text-gray-300">
+          You have not added any reviews yet. <br />
+          <Link
+            to="/addReview"
+            className="text-indigo-600 hover:underline dark:text-indigo-400"
+          >
+            Start adding reviews now!
+          </Link>
+        </div>
+      ) : (
+        <div className="overflow-x-auto">
+          <table className="w-full table-auto bg-white shadow-md rounded-lg dark:bg-gray-800 dark:text-white">
+            <thead className="bg-indigo-600 text-white dark:bg-indigo-700">
+              <tr>
+                <th className="px-6 py-3 text-left text-sm font-medium">#</th>
+                <th className="px-6 py-3 text-left text-sm font-medium">
+                  Game Title
+                </th>
+                <th className="px-6 py-3 text-center text-sm font-medium">
+                  Rating
+                </th>
+                <th className="px-6 py-3 text-center text-sm font-medium">
+                  Genre
+                </th>
+                <th className="px-6 py-3 text-center text-sm font-medium">
+                  Year
+                </th>
+                <th className="px-6 py-3 text-center text-sm font-medium">
+                  Actions
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {reviews.map((review, index) => (
+                <tr
+                  key={review._id}
+                  className="border-b hover:bg-gray-50 dark:hover:bg-gray-700"
+                >
+                  <td className="px-6 py-4 text-left text-lg text-gray-800 dark:text-gray-200">
+                    {index + 1}
+                  </td>
+                  <td className="px-6 py-4 text-left text-lg text-gray-800 dark:text-gray-200">
+                    {review.title}
+                  </td>
+                  <td className="px-6 py-4 text-center text-lg text-gray-800 dark:text-gray-200">
+                    ⭐ {review.rating}
+                  </td>
+                  <td className="px-6 py-4 text-center text-lg text-gray-800 dark:text-gray-200">
+                    {review.genre}
+                  </td>
+                  <td className="px-6 py-4 text-center text-lg text-gray-800 dark:text-gray-200">
+                    {review.publishingYear}
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <div className="flex justify-center gap-2">
+                      <button
+                        onClick={() => openModal(review)}
+                        className="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600 dark:bg-indigo-600 dark:hover:bg-indigo-700"
+                      >
+                        Update
+                      </button>
+                      <button
+                        onClick={() => handleDelete(review._id)}
+                        className="bg-red-700 text-white px-4 py-2 rounded hover:bg-red-800 dark:bg-red-800 dark:hover:bg-red-900"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
       {selectedReview && (
         <UpdateReviewModal
           isOpen={modalOpen}
