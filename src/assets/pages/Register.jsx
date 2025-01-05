@@ -9,6 +9,8 @@ import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { Helmet } from "react-helmet";
+import Lottie from "lottie-react";
+import animationData from "../Lottie/loginAnimation.json";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -167,6 +169,13 @@ const Register = () => {
           </Link>
         </div>
       </div>
+      <Lottie
+        className="ml-12 hidden md:flex"
+        animationData={animationData}
+        loop={true}
+        autoplay={true}
+        style={{ width: 300, height: 600, borderRadius: "50%" }}
+      />
     </div>
   );
 };
