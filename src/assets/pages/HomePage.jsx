@@ -121,14 +121,18 @@ const HomePage = () => {
                 style={{ backgroundImage: slide.background }}
               >
                 <div className="absolute inset-0 text-center text-white flex justify-center items-center flex-col">
-                  <h2 className="text-4xl font-semibold mb-4">{slide.title}</h2>
-                  <p className="mb-6 text-lg">{slide.description}</p>
-                  <a
-                    href={slide.link}
-                    className="bg-yellow-400 text-black py-2 px-6 rounded-full hover:bg-yellow-500 transition"
-                  >
-                    {slide.buttonText}
-                  </a>
+                  <div className="bg-[rgba(0,0,0,0.7)] p-4 rounded-xl">
+                    <h2 className="text-4xl font-semibold mb-4">
+                      {slide.title}
+                    </h2>
+                    <p className="mb-6 text-lg">{slide.description}</p>
+                    <a
+                      href={slide.link}
+                      className="bg-yellow-400 text-black py-2 px-6 rounded-full hover:bg-yellow-500 transition"
+                    >
+                      {slide.buttonText}
+                    </a>
+                  </div>
                 </div>
               </div>
             ))}
