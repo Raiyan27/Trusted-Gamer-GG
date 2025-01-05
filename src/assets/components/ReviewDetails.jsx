@@ -121,14 +121,14 @@ const ReviewDetails = () => {
               <h3 className="font-semibold text-xl text-gray-800 dark:text-white">
                 Rating
               </h3>
-              <p className="text-yellow-500">{`⭐ ${review.rating}`}</p>
+              <p className="text-yellow-700 dark:text-yellow-500">{`⭐ ${review.rating}`}</p>
             </div>
 
             <div>
               <h3 className="font-semibold text-xl text-gray-800 dark:text-white">
                 Release Year
               </h3>
-              <p className="text-yellow-500">{`${review.publishingYear}`}</p>
+              <p className="text-yellow-700 dark:text-yellow-500">{`${review.publishingYear}`}</p>
             </div>
 
             <div>

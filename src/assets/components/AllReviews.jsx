@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet";
 const AllReviews = () => {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [sortOption, setSortOption] = useState("highestRated");
+  const [sortOption, setSortOption] = useState("asc");
   const [selectedGenre, setSelectedGenre] = useState("All");
 
   const genres = [
@@ -49,6 +49,8 @@ const AllReviews = () => {
       return [...reviews].sort((a, b) => b.rating - a.rating);
     } else if (option === "year") {
       return [...reviews].sort((a, b) => b.publishingYear - a.publishingYear);
+    } else if (option === "asc") {
+      return [...reviews].sort((a, b) => a.title.localeCompare(b.title));
     }
     return reviews;
   };
@@ -87,6 +89,7 @@ const AllReviews = () => {
             onChange={(e) => setSortOption(e.target.value)}
             className="ml-4 p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white"
           >
+            <option value="asc">Ascending order (A-Z) </option>
             <option value="highestRated">Highest Rated</option>
             <option value="year">Year (Newest to Oldest)</option>
           </select>
