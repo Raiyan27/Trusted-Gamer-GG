@@ -6,7 +6,7 @@ const GameCard = ({ game }) => {
       <img
         src={game.coverImage}
         alt={game.title}
-        className="w-full h-96 object-fill rounded-md mb-4"
+        className="w-full h-72 md:h-56 object-fill rounded-md mb-4"
       />
       <h3 className="text-xl font-semibold text-gray-900 dark:text-slate-300">
         {game.title}

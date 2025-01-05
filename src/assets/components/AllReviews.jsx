@@ -116,7 +116,7 @@ const AllReviews = () => {
           No matches found for the selected genre.
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {filteredReviews.map((review) => (
             <GameCard key={review._id} game={review} />
           ))}

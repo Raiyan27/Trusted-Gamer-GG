@@ -49,7 +49,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="bg-gray-800 text-white px-6 py-4 flex justify-between items-center">
+      <nav className="bg-gray-800 text-white px-6 py-4 flex justify-between items-center sticky top-0 z-50">
         <div className="text-2xl font-bold w-32">
           <Link
             to="/"

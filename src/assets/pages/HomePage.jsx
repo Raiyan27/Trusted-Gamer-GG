@@ -28,7 +28,7 @@ const HomePage = () => {
         const sortedReviews = data.sort(
           (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
         );
-        setLatestReviews(sortedReviews.slice(0, 3));
+        setLatestReviews(sortedReviews.slice(0, 4));
 
         const gameCounts = data.reduce((acc, game) => {
           acc[game.title] = (acc[game.title] || 0) + 1;
@@ -55,7 +55,7 @@ const HomePage = () => {
       });
   }, [darkMode]);
 
-  const topRatedGames = games.sort((a, b) => b.rating - a.rating).slice(0, 6);
+  const topRatedGames = games.sort((a, b) => b.rating - a.rating).slice(0, 8);
 
   const goToPreviousSlide = () => {
     setActiveSlide((prev) => (prev === 0 ? 2 : prev - 1));
@@ -152,7 +152,7 @@ const HomePage = () => {
           </button>
         </div>
 
-        <div id="highest-rated-games" className="my-12">
+        <div id="highest-rated-games" className="my-24">
           <h2 className="text-3xl font-semibold text-center mb-6">
             Highest Rated Games
           </h2>
@@ -163,7 +163,7 @@ const HomePage = () => {
               No top-rated games available.
             </p>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {topRatedGames.map((game) => (
                 <GameCard key={game.id} game={game} />
               ))}
@@ -171,7 +171,7 @@ const HomePage = () => {
           )}
         </div>
 
-        <div id="latest-reviews" className="mb-12">
+        <div id="latest-reviews" className="mb-24">
           <h2 className="text-3xl font-semibold text-center mb-6">
             Latest Game Reviews
           </h2>
@@ -182,7 +182,7 @@ const HomePage = () => {
               No recent reviews available.
             </p>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {latestReviews.map((review) => (
                 <GameCard key={review._id} game={review} />
               ))}
@@ -190,7 +190,7 @@ const HomePage = () => {
           )}
         </div>
 
-        <div id="upcoming-games" className="my-12">
+        <div id="upcoming-games" className="my-24">
           <h2 className="text-3xl font-semibold text-center mb-6">
             Upcoming Games
           </h2>
