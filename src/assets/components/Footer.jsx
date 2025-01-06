@@ -2,7 +2,10 @@ import { FaFacebook, FaLinkedin } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white py-4 text-center md:flex justify-between px-8">
+    <footer
+      id="footer"
+      className="bg-gray-800 text-white py-4 text-center md:flex justify-between px-8"
+    >
       <div className="flex gap-2 items-center justify-center">
         <img className="w-8" src="/logo.png" alt="" />
         <p>

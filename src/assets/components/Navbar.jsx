@@ -11,6 +11,7 @@ const Navbar = () => {
   const { currentUser } = useContext(AuthContext);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isMoreDropdownOpen, setIsMoreDropdownOpen] = useState(false);
   const auth = getAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -45,6 +46,14 @@ const Navbar = () => {
     setDropdownOpen(false);
   };
 
+  const toggleMoreDropdown = () => {
+    setIsMoreDropdownOpen((prev) => !prev);
+  };
+
+  const closeMoreMenu = () => {
+    setIsMoreDropdownOpen(false);
+  };
+
   const isActiveLink = (path) => location.pathname === path;
 
   return (
@@ -53,13 +62,13 @@ const Navbar = () => {
         <div className="text-2xl font-bold w-32">
           <Link
             to="/"
-            className="flex gap-2 whitespace md:whitespace-nowrap"
+            className="flex gap-2 whitespace sm:whitespace-nowrap"
             onClick={closeMenu}
           >
             Trusted Gamer
             <div className="text-yellow-300">
               <Typewriter
-                words={["GG", "Good Game"]}
+                words={["GG", "🎮🕹️"]}
                 loop={true}
                 cursor
                 cursorStyle="|"
@@ -71,7 +80,7 @@ const Navbar = () => {
           </Link>
         </div>
 
-        <ul className="space-x-4 hidden md:flex">
+        <ul className="space-x-4 hidden lg:flex">
           <li>
             <Link
               to="/"
@@ -94,6 +103,43 @@ const Navbar = () => {
               All Reviews
             </Link>
           </li>
+          {!currentUser && (
+            <ul className="space-x-4 hidden md:flex">
+              <li>
+                <Link
+                  to="/about"
+                  className={`hover:text-gray-400 ${
+                    isActiveLink("/about") ? "text-yellow-300" : ""
+                  }`}
+                  onClick={closeMenu}
+                >
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/contact"
+                  className={`hover:text-gray-400 ${
+                    isActiveLink("/contact") ? "text-yellow-300" : ""
+                  }`}
+                  onClick={closeMenu}
+                >
+                  Contact
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/how-to-review"
+                  className={`hover:text-gray-400 ${
+                    isActiveLink("/how-to-review") ? "text-yellow-300" : ""
+                  }`}
+                  onClick={closeMenu}
+                >
+                  How to Review
+                </Link>
+              </li>
+            </ul>
+          )}
           {currentUser && (
             <ul className="flex space-x-4">
               <li>
@@ -129,16 +175,69 @@ const Navbar = () => {
                   Game Watchlist
                 </Link>
               </li>
+              <li className="relative group">
+                <button
+                  onClick={toggleMoreDropdown}
+                  className={`hover:text-gray-400 ${
+                    isActiveLink("/contact") ||
+                    isActiveLink("/about") ||
+                    isActiveLink("/how-to-review")
+                      ? "text-yellow-300"
+                      : ""
+                  }`}
+                >
+                  More
+                </button>
+                {isMoreDropdownOpen && (
+                  <ul className="absolute left-0 mt-2 w-36 p-4 bg-gray-800 borde rounded shadow-lg">
+                    <li>
+                      <Link
+                        to="/about"
+                        className={`hover:text-gray-400 ${
+                          isActiveLink("/about") ? "text-yellow-300" : ""
+                        }`}
+                        onClick={closeMoreMenu}
+                      >
+                        About
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/contact"
+                        className={`hover:text-gray-400 ${
+                          isActiveLink("/contact") ? "text-yellow-300" : ""
+                        }`}
+                        onClick={closeMoreMenu}
+                      >
+                        Contact
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/how-to-review"
+                        className={`hover:text-gray-400 ${
+                          isActiveLink("/how-to-review")
+                            ? "text-yellow-300"
+                            : ""
+                        }`}
+                        onClick={closeMoreMenu}
+                      >
+                        How to Review
+                      </Link>
+                    </li>
+                  </ul>
+                )}
+              </li>
             </ul>
           )}
         </ul>
 
-        <button className="md:hidden text-white" onClick={toggleMenu}>
+        <button className="lg:hidden text-white" onClick={toggleMenu}>
           <FaBars className="w-6 h-6" />
         </button>
 
         <ul
-          className={`absolute bg-gray-800 text-white top-20 left-0 right-0 p-4 md:hidden flex flex-col gap-4 z-50 ${
+          className={`absolute bg-gray-800 text-white top-20 left-0 right-0 p-4 lg:hidden flex flex-col gap-4 z-50 ${
             menuOpen ? "block" : "hidden"
           }`}
         >
@@ -164,6 +263,7 @@ const Navbar = () => {
               All Reviews
             </Link>
           </li>
+
           {!currentUser && (
             <>
               <li>
@@ -226,19 +326,54 @@ const Navbar = () => {
                   Game Watchlist
                 </Link>
               </li>
-              <li>
-                <button
-                  onClick={handleLogout}
-                  className="w-full text-left text-red-500 hover:bg-gray-600 p-2 rounded-md"
-                >
-                  Logout
-                </button>
-              </li>
             </>
+          )}
+          <li>
+            <Link
+              to="/about"
+              className={`hover:text-gray-400 ${
+                isActiveLink("/about") ? "text-yellow-300" : ""
+              }`}
+              onClick={closeMenu}
+            >
+              About Us
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/how-to-review"
+              className={`hover:text-gray-400 ${
+                isActiveLink("/how-to-review") ? "text-yellow-300" : ""
+              }`}
+              onClick={closeMenu}
+            >
+              How to Review
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/contact"
+              className={`hover:text-gray-400 ${
+                isActiveLink("/contact") ? "text-yellow-300" : ""
+              }`}
+              onClick={closeMenu}
+            >
+              Contact Us
+            </Link>
+          </li>
+          {currentUser && (
+            <li>
+              <button
+                onClick={handleLogout}
+                className="w-full text-left text-red-500 hover:bg-gray-600 p-2 rounded-md"
+              >
+                Logout
+              </button>
+            </li>
           )}
         </ul>
 
-        <ul className="space-x-4 hidden md:flex">
+        <ul className="space-x-4 hidden lg:flex">
           {currentUser ? (
             <li className="relative group">
               <div

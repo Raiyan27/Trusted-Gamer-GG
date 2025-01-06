@@ -18,6 +18,9 @@ import AllReviews from "./assets/components/AllReviews";
 import MyReviews from "./assets/components/MyReviews";
 import ReviewDetails from "./assets/components/ReviewDetails";
 import MyWatchlist from "./assets/components/MyWatchList";
+import AboutPage from "./assets/pages/AboutPage";
+import HowToReview from "./assets/pages/HowToReview";
+import Contact from "./assets/pages/Contact";
 
 const router = createBrowserRouter([
   {
@@ -64,6 +67,18 @@ const router = createBrowserRouter([
       {
         path: "reviews",
         element: <AllReviews />,
+      },
+      {
+        path: "about",
+        element: <AboutPage />,
+      },
+      {
+        path: "how-to-review",
+        element: <HowToReview />,
+      },
+      {
+        path: "contact",
+        element: <Contact />,
       },
       {
         path: "review/:id",

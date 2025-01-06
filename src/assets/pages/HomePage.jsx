@@ -140,13 +140,13 @@ const HomePage = () => {
 
           <button
             onClick={goToPreviousSlide}
-            className="absolute left-4 top-1/2 transform translate-y-8 md:-translate-y-1/2 bg-yellow-400 text-black p-3 rounded-full shadow-lg hover:bg-yellow-500 transition"
+            className="absolute left-1 top-1/2 transform translate-y-8 md:-translate-y-1/2 bg-yellow-400 text-black p-1 md:p-4 rounded-full shadow-lg hover:bg-yellow-500 transition"
           >
             &lt;
           </button>
           <button
             onClick={goToNextSlide}
-            className="absolute right-4 top-1/2 transform translate-y-8 md:-translate-y-1/2 bg-yellow-400 text-black p-3 rounded-full shadow-lg hover:bg-yellow-500 transition"
+            className="absolute right-1 top-1/2 transform translate-y-8 md:-translate-y-1/2 bg-yellow-400 text-black p-1 md:p-4 rounded-full shadow-lg hover:bg-yellow-500 transition"
           >
             &gt;
           </button>
